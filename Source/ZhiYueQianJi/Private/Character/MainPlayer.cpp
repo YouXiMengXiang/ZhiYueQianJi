@@ -54,7 +54,7 @@ void AMainPlayer::Look(const FInputActionValue& Value)
 	FVector2D LookVector = Value.Get<FVector2D>();
 	if (Controller)
 	{
-		AddControllerYawInput(LookVector.X);
+		AddControllerYawInput(-LookVector.X);
 		AddControllerPitchInput(LookVector.Y);
 	}
 
