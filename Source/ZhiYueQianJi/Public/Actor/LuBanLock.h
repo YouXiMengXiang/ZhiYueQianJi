@@ -13,8 +13,21 @@ class ZHIYUEQIANJI_API ALuBanLock : public AActor
 	
 public:	
 	ALuBanLock();
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+
+	//移动锁定
 	bool MoveLock = false;
+
+	//能否移动判断
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool CanMove = false;
+
+	//判断是否被解锁
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool OpenLock = false;
+
+
+
+	//移动方向设置
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool RedRightMove = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -26,12 +39,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool GreenLeftMove = false;
 
+	//鲁班锁编号
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MoveNuber = 0;
+
+	//移动距离
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MoveDistance =4000;
+
+	//移动速度
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MoveSpeed = 0.02;
+
+	//移动目标点
 	FVector TagerPoint;
 
 protected:
@@ -42,5 +62,6 @@ public:
 	void SetMoveDistance();
 
 	UFUNCTION(BlueprintCallable, Category = "MyUseMove")
+	void MoveTheLock();
 	void UseMove();
 };

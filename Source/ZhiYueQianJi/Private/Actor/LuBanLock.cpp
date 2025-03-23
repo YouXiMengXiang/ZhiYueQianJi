@@ -45,6 +45,16 @@ void ALuBanLock::SetMoveDistance()
 }
 
 
+void ALuBanLock::MoveTheLock()
+{
+	if (CanMove) {
+		MoveLock = true;
+	}
+	else {
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, FString::Printf(TEXT("Can`t move this block")));
+	}
+}
+
 void ALuBanLock::UseMove()
 {
 	FVector BlockPoint = this->GetActorLocation();
@@ -54,7 +64,7 @@ void ALuBanLock::UseMove()
 	if (BlockPoint.Distance(BlockPoint, NewLocation) < 1) {
 		//this->Destroy();
 		MoveLock = false;
-		
+		OpenLock = true;
 	}
 	
 }
