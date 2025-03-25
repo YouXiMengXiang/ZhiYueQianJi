@@ -57,6 +57,10 @@ void ALuBanLock::MoveTheLock()
 
 void ALuBanLock::UseMove()
 {
+	if (ChangeLastFalg) {
+	ChangeLastLock();
+	ChangeLastFalg = false;
+	}
 	FVector BlockPoint = this->GetActorLocation();
 	FVector MoveLocation = (TagerPoint - BlockPoint) * MoveSpeed;
 	FVector NewLocation = BlockPoint + MoveLocation;
@@ -67,5 +71,15 @@ void ALuBanLock::UseMove()
 		OpenLock = true;
 	}
 	
+}
+
+void ALuBanLock::ChangeLastLock()
+{
+	for (int i = 0; i < LastLockArray.Num(); i++) {
+		ALuBanLock* Last = Cast<ALuBanLock>(LastLockArray[i]);
+		if (Last) {
+			Last->CanMove = true;
+		}
+	}
 }
 

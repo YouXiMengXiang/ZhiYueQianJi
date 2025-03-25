@@ -21,6 +21,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanMove = false;
 
+	//下一个可以移动的鲁班锁成员
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<ALuBanLock*> LastLockArray;
+	bool ChangeLastFalg = true;
 	//判断是否被解锁
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool OpenLock = false;
@@ -64,4 +68,5 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "MyUseMove")
 	void MoveTheLock();
 	void UseMove();
+	void ChangeLastLock();
 };
