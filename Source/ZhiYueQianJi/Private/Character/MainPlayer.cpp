@@ -72,6 +72,50 @@ void AMainPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked< UEnhancedInputComponent>(PlayerInputComponent)) {
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMainPlayer::Look);
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMainPlayer::Move);
+		EnhancedInputComponent->BindAction(MouseUseAction, ETriggerEvent::Triggered, this, &AMainPlayer::HandleLeftMouseClick);
+	}
+
+}
+
+void AMainPlayer::ShowMouse()
+{
+	// 获取玩家控制器
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	if (PlayerController)
+	{
+		// 启用鼠标光标和点击事件
+		PlayerController->bShowMouseCursor = true;
+		PlayerController->bEnableClickEvents = true;
+		PlayerController->bEnableMouseOverEvents = true;
+	}
+
+}
+
+void AMainPlayer::HandleLeftMouseClick()
+{
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	if (PlayerController)
+	{
+		FVector WorldLocation, WorldDirection;
+		if (PlayerController->DeprojectMousePositionToWorld(WorldLocation, WorldDirection))
+		{
+			FHitResult HitResult;
+			FCollisionQueryParams CollisionParams;
+			CollisionParams.bTraceComplex = true;
+			if (GetWorld()->LineTraceSingleByChannel(HitResult, WorldLocation, WorldLocation + WorldDirection * 10000, ECC_Visibility, CollisionParams))
+			{
+				AActor* HitActor = HitResult.GetActor();
+				if (HitActor)
+				{
+					//此处操作被点击的物体
+					ALuBanLock* LuBanLock = Cast<ALuBanLock>(HitActor);
+					if (LuBanLock) {
+						LuBanLock->MoveTheLock();
+					}
+					//UE_LOG(LogTemp, Warning, TEXT("Hit Actor: %s"), *HitActor->GetName());
+				}
+			}
+		}
 	}
 
 }
