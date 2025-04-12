@@ -73,6 +73,8 @@ void AMainPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMainPlayer::Look);
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMainPlayer::Move);
 		EnhancedInputComponent->BindAction(MouseUseAction, ETriggerEvent::Triggered, this, &AMainPlayer::HandleLeftMouseClick);
+
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AMainPlayer::PlayerJump);
 	}
 
 }
@@ -89,6 +91,11 @@ void AMainPlayer::ShowMouse()
 		PlayerController->bEnableMouseOverEvents = true;
 	}
 
+}
+
+void AMainPlayer::UpFly()
+{
+	GetCharacterMovement()->AddImpulse(FVector(0, 0, UpFlyForce), true);
 }
 
 void AMainPlayer::HandleLeftMouseClick()
@@ -120,3 +127,9 @@ void AMainPlayer::HandleLeftMouseClick()
 
 }
 
+void AMainPlayer::PlayerJump()
+{
+	if (GetCharacterMovement()->IsMovingOnGround()) {
+		GetCharacterMovement()->AddImpulse(FVector(0, 0, JumpForce), true);
+	}
+}
