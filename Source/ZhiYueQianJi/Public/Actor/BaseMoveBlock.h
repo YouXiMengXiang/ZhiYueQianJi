@@ -13,6 +13,11 @@ class ZHIYUEQIANJI_API ABaseMoveBlock : public AActor
 	
 public:	
 	ABaseMoveBlock();
+	//¼ÆÊ±Æ÷
+	FTimerHandle TimerHandle; 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector StartPoint;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector TagerPoint;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -20,10 +25,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanMove = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool UesWaitTimeChangeCanMove = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float WaitTime = 0;
 protected:
 	virtual void BeginPlay() override;
 
 public:	
 	virtual void Tick(float DeltaTime) override;
 	void BlockMove();
+	void ChangeCanMove();
 };

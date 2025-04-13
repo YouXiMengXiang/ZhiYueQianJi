@@ -12,7 +12,10 @@ ABaseMoveBlock::ABaseMoveBlock()
 void ABaseMoveBlock::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	this->SetActorLocation(StartPoint);
+	if(UesWaitTimeChangeCanMove)
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABaseMoveBlock::ChangeCanMove, WaitTime, false);
+
 }
 
 void ABaseMoveBlock::Tick(float DeltaTime)
@@ -33,4 +36,9 @@ void ABaseMoveBlock::BlockMove()
 	if (BlockPoint.Distance(BlockPoint, NewLocation) < 0.01) {
 		CanMove = false;
 	}
+}
+
+void ABaseMoveBlock::ChangeCanMove()
+{
+	CanMove = !CanMove;
 }
