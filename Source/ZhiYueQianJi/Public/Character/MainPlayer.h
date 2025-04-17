@@ -28,6 +28,12 @@ class ZHIYUEQIANJI_API AMainPlayer : public ACharacter
 public:
 	AMainPlayer();
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float JumpForce = 1000;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float UpFlyForce = 10000;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputMappingContext>DefaultMapping;
 
@@ -36,6 +42,10 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UInputAction> JumpAction;
+
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputAction> MouseUseAction;
@@ -61,5 +71,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)	
 	void ShowMouse();
+	UFUNCTION(BlueprintCallable)
+	void UpFly();
 	void HandleLeftMouseClick();
+	void PlayerJump();
+
 };
