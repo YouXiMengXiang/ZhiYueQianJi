@@ -12,6 +12,7 @@ ABaseMoveBlock::ABaseMoveBlock()
 void ABaseMoveBlock::BeginPlay()
 {
 	Super::BeginPlay();
+	if(UseStartPoint)
 	this->SetActorLocation(StartPoint);
 	if(UesWaitTimeChangeCanMove)
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABaseMoveBlock::ChangeCanMove, WaitTime, false);

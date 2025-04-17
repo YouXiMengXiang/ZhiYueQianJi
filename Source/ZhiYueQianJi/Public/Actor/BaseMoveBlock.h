@@ -15,6 +15,8 @@ public:
 	ABaseMoveBlock();
 	//¼ÆÊ±Æ÷
 	FTimerHandle TimerHandle; 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool UseStartPoint = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector StartPoint;
