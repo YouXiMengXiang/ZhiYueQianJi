@@ -14,6 +14,8 @@ class ZHIYUEQIANJI_API APatrolActor : public AActor
 public:	
 	// Sets default values for this actor's properties
 	APatrolActor();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool CanMove = true;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TArray<FVector> PatrolPoint;
 	int PointNumbler = 0;
@@ -21,7 +23,7 @@ public:
 	bool PatrolMove = true;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MoveSpeed = 0.01;
-	bool CanMove = true;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
