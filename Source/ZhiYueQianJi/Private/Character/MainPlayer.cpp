@@ -20,7 +20,7 @@ AMainPlayer::AMainPlayer()
 	PlayerCamera->bUsePawnControlRotation = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 200.f, 0.f);
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 800.f, 0.f);
 
 }
 
