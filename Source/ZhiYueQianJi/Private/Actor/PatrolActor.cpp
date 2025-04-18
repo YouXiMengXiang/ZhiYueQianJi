@@ -27,7 +27,7 @@ void APatrolActor::Tick(float DeltaTime)
 
 void APatrolActor::Move()
 {
-	if (CanMove) {
+	if (CanMove&&PatrolPoint.Num()) {
 
 		FVector BlockPoint = this->GetActorLocation();
 		FVector MoveLocation = (PatrolPoint[PointNumbler] - BlockPoint) * MoveSpeed;
