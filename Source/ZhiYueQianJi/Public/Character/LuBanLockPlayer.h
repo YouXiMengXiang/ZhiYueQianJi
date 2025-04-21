@@ -22,8 +22,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputMappingContext>DefaultMapping;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	TObjectPtr<UInputAction> LookAction;
+	
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputAction> MouseUseAction;
@@ -40,7 +39,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ShowMouse();
-
-	void Look(const FInputActionValue& Value);
+	UFUNCTION(BlueprintCallable)
+	void CloseMouse();
 	void HandleLeftMouseClick();
 };

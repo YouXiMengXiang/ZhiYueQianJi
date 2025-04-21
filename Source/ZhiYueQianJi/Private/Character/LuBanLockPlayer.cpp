@@ -35,7 +35,6 @@ void ALuBanLockPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked< UEnhancedInputComponent>(PlayerInputComponent)) {
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ALuBanLockPlayer::Look);
 		EnhancedInputComponent->BindAction(MouseUseAction, ETriggerEvent::Triggered, this, &ALuBanLockPlayer::HandleLeftMouseClick);
 
 	}
@@ -53,15 +52,19 @@ void ALuBanLockPlayer::ShowMouse()
 	}
 }
 
-void ALuBanLockPlayer::Look(const FInputActionValue& Value)
+void ALuBanLockPlayer::CloseMouse()
 {
-	FVector2D LookVector = Value.Get<FVector2D>();
-	if (Controller)
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	if (PlayerController)
 	{
-		AddControllerYawInput(-LookVector.X);
-		AddControllerPitchInput(LookVector.Y);
+		// 启用鼠标光标和点击事件
+		PlayerController->bShowMouseCursor = false;
+		PlayerController->bEnableClickEvents = false;
+		PlayerController->bEnableMouseOverEvents = false;
 	}
 }
+
+
 
 void ALuBanLockPlayer::HandleLeftMouseClick()
 {
