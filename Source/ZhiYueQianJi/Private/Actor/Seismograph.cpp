@@ -15,7 +15,9 @@ ASeismograph::ASeismograph()
 void ASeismograph::BeginPlay()
 {
 	Super::BeginPlay();
-	BollFallDown();
+	//BollFallDown();
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ASeismograph::BollFallDown, FallDownTime, true);
+
 }
 
 // Called every frame
@@ -27,11 +29,17 @@ void ASeismograph::Tick(float DeltaTime)
 
 void ASeismograph::BollFallDown()
 {
-	int32 RandomInt = FMath::RandRange(0, 7);
+	int32 RandomInt = DownOder[cont];
+	//int32 RandomInt = FMath::RandRange(0, 7);
 	AActor* FallDownActor = Cast<AActor>( DownBoll[RandomInt]);
 	AFallDownBoll* Boll = Cast<AFallDownBoll>(FallDownActor);
 	if (Boll) {
+		
 		Boll->BollCanFallDown = true;
+		
+		//UE_LOG(LogTemp, Warning, TEXT("cont ++"));
+		if(cont+1<DownOder.Num())cont++;
+		//if (Boll->BollFallDown&&cont<8)BollFallDown();
 	}
 
 }
