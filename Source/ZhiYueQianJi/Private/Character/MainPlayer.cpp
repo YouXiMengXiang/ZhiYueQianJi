@@ -93,6 +93,19 @@ void AMainPlayer::ShowMouse()
 
 }
 
+void AMainPlayer::CloseMouse()
+{
+	// 获取玩家控制器
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	if (PlayerController)
+	{
+		// 启用鼠标光标和点击事件
+		PlayerController->bShowMouseCursor = false;
+		PlayerController->bEnableClickEvents = false;
+		PlayerController->bEnableMouseOverEvents = false;
+	}
+}
+
 void AMainPlayer::UpFly()
 {
 	GetCharacterMovement()->AddImpulse(FVector(0, 0, UpFlyForce), true);

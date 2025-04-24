@@ -45,8 +45,9 @@ public:
 
 	//Â³°àËø±àºÅ
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int MoveNuber = 0;
-
+	int MoveNumber = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool LastLevel = false;
 	//ÒÆ¶¯¾àÀë
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MoveDistance =4000;

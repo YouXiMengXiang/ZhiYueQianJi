@@ -72,6 +72,8 @@ public:
 	UFUNCTION(BlueprintCallable)	
 	void ShowMouse();
 	UFUNCTION(BlueprintCallable)
+	void CloseMouse();
+	UFUNCTION(BlueprintCallable)
 	void UpFly();
 	void HandleLeftMouseClick();
 	void PlayerJump();

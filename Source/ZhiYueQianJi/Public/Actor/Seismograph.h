@@ -14,8 +14,15 @@ class ZHIYUEQIANJI_API ASeismograph : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ASeismograph();
+	FTimerHandle TimerHandle; 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float FallDownTime = 4;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActor*> DownBoll;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<int> DownOder;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int cont = 0;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

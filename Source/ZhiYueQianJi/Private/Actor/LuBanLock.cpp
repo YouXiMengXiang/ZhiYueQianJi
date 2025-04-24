@@ -49,8 +49,8 @@ void ALuBanLock::MoveTheLock()
 {
 	if (CanMove) {
 		MoveLock = true;
-	}
-	else {
+		if (MoveNumber == 6)LastLevel = true;
+	}else {
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, FString::Printf(TEXT("Can`t move this block")));
 	}
 }
