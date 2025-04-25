@@ -56,10 +56,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCameraComponent> PlayerCamera;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Montage", meta = (AllowPrivateAccess = "true"))
+	UAnimMontage* JumpMontage;
+
+
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 
-	
+	//创建动画蒙太奇函数
+	void AnimMontagePlay(UAnimMontage* MontageToPlay, FName SectionName = "Default", float PlayRate = 1.0f);
+
 
 protected:
 	virtual void BeginPlay() override;

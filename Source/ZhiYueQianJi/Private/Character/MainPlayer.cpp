@@ -60,6 +60,21 @@ void AMainPlayer::Look(const FInputActionValue& Value)
 
 }
 
+void AMainPlayer::AnimMontagePlay(UAnimMontage* MontageToPlay, FName SectionName, float PlayRate)
+{
+	UAnimInstance* AnimInstance = Cast<UAnimInstance>(GetMesh()->GetAnimInstance());
+	if (AnimInstance && MontageToPlay)
+	{
+		//检查动画蒙太奇是否在播放
+		if (!AnimInstance->Montage_IsPlaying(MontageToPlay))
+		{
+			//GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Blue, FString::Printf(TEXT("Jump test")));
+			PlayAnimMontage(MontageToPlay, PlayRate, SectionName);
+		}
+	}
+
+}
+
 void AMainPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -143,6 +158,9 @@ void AMainPlayer::HandleLeftMouseClick()
 void AMainPlayer::PlayerJump()
 {
 	if (GetCharacterMovement()->IsMovingOnGround()) {
+		AnimMontagePlay(JumpMontage, FName("Jump"));
+		//GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Blue, FString::Printf(TEXT("Jump test")));
+
 		GetCharacterMovement()->AddImpulse(FVector(0, 0, JumpForce), true);
 	}
 }
