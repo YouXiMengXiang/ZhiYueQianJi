@@ -20,6 +20,10 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "UNTLink",
+			"Enabled": true
 		}
 	]
 }
