@@ -27,12 +27,17 @@ class ZHIYUEQIANJI_API AMainPlayer : public ACharacter
 
 public:
 	AMainPlayer();
+	//火箭显示时间计时器
+	FTimerHandle TimerHandle; 
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float JumpForce = 1000;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float UpFlyForce = 10000;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool CanSeeRock = false;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputMappingContext>DefaultMapping;
@@ -81,6 +86,7 @@ public:
 	void CloseMouse();
 	UFUNCTION(BlueprintCallable)
 	void UpFly();
+	void DelRock();
 	void HandleLeftMouseClick();
 	void PlayerJump();
 

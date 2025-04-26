@@ -124,6 +124,14 @@ void AMainPlayer::CloseMouse()
 void AMainPlayer::UpFly()
 {
 	GetCharacterMovement()->AddImpulse(FVector(0, 0, UpFlyForce), true);
+	CanSeeRock = true;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMainPlayer::DelRock, 1.0f, false);
+
+}
+
+void AMainPlayer::DelRock()
+{
+	CanSeeRock = false;
 }
 
 void AMainPlayer::HandleLeftMouseClick()
